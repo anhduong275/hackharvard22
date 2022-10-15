@@ -4,11 +4,7 @@ import "../App.css";
 const HomePage = () => {
   return (
     <div>
-      {/* <div className="text-lg">
-          <div className="flex justify-center">
-            <NavBar></NavBar>
-          </div>
-        </div> */}
+      <p>Welcome to our task allocator! Log in to get started</p>
     </div>
   );
 };

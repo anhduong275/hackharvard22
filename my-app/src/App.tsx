@@ -13,13 +13,14 @@ function App() {
           Household Task Allocator
         </div>
       </header>
-      <div className="text-lg">
+      <div className="text-lg mb-8">
         <div className="flex justify-center">
           <NavBar></NavBar>
         </div>
       </div>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
+        <Route path="/login" element={<LogIn />}></Route>
       </Routes>
     </div>
   );
