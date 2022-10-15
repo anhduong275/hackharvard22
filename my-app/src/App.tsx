@@ -4,6 +4,7 @@ import LogIn from "./pages/login";
 import NavBar from "./components/navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home";
+import RepeatingTasks from "./pages/repeating-tasks";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LogIn />}></Route>
+        <Route path="/repeating-tasks" element={<RepeatingTasks />}></Route>
       </Routes>
     </div>
   );
