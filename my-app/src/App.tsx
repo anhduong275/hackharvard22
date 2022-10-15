@@ -4,16 +4,14 @@ import LogIn from "./pages/login/login";
 import NavBar from "./components/navbar";
 import { BrowserRouter as BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home";
-<<<<<<< HEAD
 import RepeatingTasks from "./pages/repeating-tasks";
-=======
 import Dashboard from './components/dashboard';
 import Preferences from './components/preferences';
 import Login from "./pages/login/login";
->>>>>>> e3eece0 (login stufF??)
 
 function App() {
-  const [token, setToken] = useState({});
+  const [token, setToken] = useState(-1);
+  const [loggedIn, setLoggedIn] = useState(false);
 
 
   
@@ -29,18 +27,14 @@ function App() {
           <NavBar></NavBar>
         </div>
         <div className="pt-10">
-        <LogIn/>
         </div>
         
       </div>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
-<<<<<<< HEAD
-        <Route path="/login" element={<LogIn />}></Route>
+        {!loggedIn ? <Route path="/login" element={<LogIn setToken={setToken} setLoggedIn={setLoggedIn}/>}></Route>
+        : <Route path="/repeating-tasks" element={<RepeatingTasks />}></Route>}
         <Route path="/repeating-tasks" element={<RepeatingTasks />}></Route>
-=======
-        <Route path="/" element={<LogIn />}></Route>
->>>>>>> e3eece0 (login stufF??)
       </Routes>
 
     </div>
