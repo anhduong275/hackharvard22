@@ -40,7 +40,7 @@ const RepeatingTasks = () => {
   const submitTask = async (task: any, time: any) => {
     const { data, error } = await supabase
       .from("repeated_tasks")
-      .insert([{ repeated_task: task, time: time, familyid: familyid }]);
+      .insert([{ task: task, time: time, familyid: familyid }]);
     // window.location.reload();
     await getRecurringTasks();
   };
@@ -67,7 +67,7 @@ const RepeatingTasks = () => {
               return (
                 <tr key={task.id} className="bg-white border border-sky-400">
                   <td>{task.time}</td>
-                  <td>{task.repeated_task}</td>
+                  <td>{task.task}</td>
                   <td>{task.allocated_to}</td>
                 </tr>
               );
