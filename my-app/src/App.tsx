@@ -1,7 +1,9 @@
 import React from "react";
 import "./App.css";
-import LogIn from "./login";
+import LogIn from "./pages/login";
 import NavBar from "./components/navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/home";
 
 function App() {
   return (
@@ -15,8 +17,10 @@ function App() {
         <div className="flex justify-center">
           <NavBar></NavBar>
         </div>
-        <LogIn></LogIn>
       </div>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+      </Routes>
     </div>
   );
 }
