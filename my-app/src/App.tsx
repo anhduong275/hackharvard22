@@ -7,6 +7,7 @@ import HomePage from "./pages/home";
 import RepeatingTasks from "./pages/repeating-tasks";
 import Allocator from "./pages/allocator";
 import AboutUs from "./pages/about-us";
+import Users from "./pages/users";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/allocator" element={<Allocator />}></Route>
-        <Route path="/login" element={<LogIn />}></Route>
+        <Route path="/users" element={<Users />}></Route>
         <Route path="/repeating-tasks" element={<RepeatingTasks />}></Route>
         <Route path="/about-us" element={<AboutUs />}></Route>
       </Routes>

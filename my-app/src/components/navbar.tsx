@@ -13,7 +13,7 @@ const NavBar = () => {
         <a href="/repeating-tasks">Repeating tasks</a>
       </div>
       <div className="col-span-1 hover:cursor-pointer hover:bg-sky-500 h-full flex justify-center items-center px-2">
-        <a href="/login">Log in</a>
+        <a href="/users">Users</a>
       </div>
       <div className="col-span-1 hover:cursor-pointer hover:bg-sky-500 h-full flex justify-center items-center px-2">
         <a href="/about-us">About us</a>
