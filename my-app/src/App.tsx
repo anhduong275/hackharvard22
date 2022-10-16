@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <header>
         <div>
-          <h1 className="text-4xl font-black pt-8">Household Task Allocator</h1>
+          <h1 className="text-4xl font-black pt-8">The Family Planner</h1>
           <h2 className="text-xl font-black pt-2 pb-8">
             Anh Duong & Charles Nguyen
           </h2>
