@@ -65,10 +65,10 @@ const RepeatingTasks = () => {
         <table>
           <thead>
             <tr>
-              <th className="border border-sky-400 bg-sky-300">Time</th>
-              <th className="border border-sky-400 bg-sky-300">Name</th>
-              <th className="border border-sky-400 bg-sky-300">Allocated to</th>
-              <th className="border border-sky-400 bg-sky-300">Delete</th>
+              <th className="border border-sky-400 bg-sky-300 px-5">Time</th>
+              <th className="border border-sky-400 bg-sky-300 px-5">Name</th>
+              <th className="border border-sky-400 bg-sky-300 px-5">Allocated to</th>
+              <th className="border border-sky-400 bg-sky-300 px-5">Delete</th>
             </tr>
           </thead>
           <tbody>
