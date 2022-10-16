@@ -10,6 +10,28 @@ const AboutUs = () => {
         You can add non-recurring task to your repeating tasks to plan for your
         day!
       </div>
+      <div className="flex justify-center py-4">
+        <div className="grid grid-cols-2">
+          <div className="col-span-1 flex justify-center flex-col">
+            <img
+              width={350}
+              height={350}
+              src={"./IMG_2852.jpg"}
+              alt="Anh Duong"
+            ></img>
+            <div>Anh Duong</div>
+          </div>
+          <div className="col-span-1 flex justify-center flex-col">
+            <img
+              width={350}
+              height={350}
+              src={"./IMG_2854.jpg"}
+              alt="Charles Nguyen"
+            ></img>
+            <div>Charles Nguyen</div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

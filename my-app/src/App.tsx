@@ -12,8 +12,11 @@ function App() {
   return (
     <div className="App">
       <header>
-        <div className="text-4xl font-black py-10">
-          Household Task Allocator
+        <div>
+          <h1 className="text-4xl font-black pt-8">Household Task Allocator</h1>
+          <h2 className="text-xl font-black pt-2 pb-8">
+            Anh Duong & Charles Nguyen
+          </h2>
         </div>
       </header>
       <div className="text-lg mb-8">

@@ -16,9 +16,14 @@ const Allocator = () => {
       .select("*")
       .eq("familyid", familyid)
       .order("time");
-    const newrepeated = [...repeated_tasks!];
+    const newrepeated = repeated_tasks!.map((task) => ({
+      ...task,
+      repeated: true,
+    }));
     setRepeatedTasks(newrepeated);
     copy = newrepeated;
+    console.log("newrepeated", newrepeated);
+    console.log("copy", copy);
 
     let { data: nonrepeated_tasks } = await supabase //missing error due to naming conflict
       .from("nonrepeated_tasks")
@@ -35,9 +40,14 @@ const Allocator = () => {
     const filteredTasks = nonrepeated_tasks!.filter((task) =>
       filterTodaysTasks(filteredToday, task)
     );
-    const newfiltered = [...filteredTasks];
+    const newfiltered = filteredTasks.map((task) => ({
+      ...task,
+      repeated: false,
+    }));
     setNonrepeatedTasks(newfiltered);
     copynon = newfiltered;
+    console.log("newfiltered", newfiltered);
+    console.log("copynon", copynon);
   }, []);
 
   const filterTodaysTasks = (today: string, nonrepeatedTask: any) => {
@@ -60,7 +70,12 @@ const Allocator = () => {
     const filteredTasks = nonrepeated_tasks!.filter((task) =>
       filterTodaysTasks(filteredToday, task)
     );
-    setNonrepeatedTasks(filteredTasks);
+    const newfiltered = filteredTasks.map((task) => ({
+      ...task,
+      repeated: false,
+    }));
+    setNonrepeatedTasks(newfiltered);
+    copynon = newfiltered;
   }, []);
 
   const getAllTasks = useCallback(() => {
@@ -119,7 +134,22 @@ const Allocator = () => {
     const { data, error } = await supabase
       .from("nonrepeated_tasks")
       .insert([{ task: task, time: time, familyid: familyid }]);
-    await getNonrepeatedTasks();
+    await perf();
+  };
+
+  const deleteTask = async (e: any, taskID: number, repeated: boolean) => {
+    if (repeated) {
+      const { data, error } = await supabase
+        .from("repeated_tasks")
+        .delete()
+        .eq("id", taskID);
+    } else {
+      const { data, error } = await supabase
+        .from("nonrepeated_tasks")
+        .delete()
+        .eq("id", taskID);
+    }
+    await perf();
   };
 
   const getRndInteger = (min: number, max: number) => {
@@ -159,10 +189,10 @@ const Allocator = () => {
   return (
     <div>
       <div>
-        <p className="text-2xl py-5">Allocating tasks</p>
+        <p className="text-2xl py-5">Allocating tasks &#40;very random!&#41;</p>
       </div>
       <div>
-        <p className="text-2xl py-5">{familyName}</p>
+        <p className="text-2xl py-5">Your family name: {familyName}</p>
       </div>
       <button className="bg-sky-400 my-4 p-2" onClick={allocate}>
         Click to allocate
@@ -174,6 +204,8 @@ const Allocator = () => {
               <th className="border border-sky-400 bg-sky-300">Time</th>
               <th className="border border-sky-400 bg-sky-300">Name</th>
               <th className="border border-sky-400 bg-sky-300">Allocated to</th>
+              <th className="border border-sky-400 bg-sky-300">Daily?</th>
+              <th className="border border-sky-400 bg-sky-300">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -186,6 +218,16 @@ const Allocator = () => {
                   <td>{task.time}</td>
                   <td>{task.task}</td>
                   <td>{task.allocatedTo}</td>
+                  <td>{task.repeated ? "Yes" : "No"}</td>
+                  <td className="bg-red-400">
+                    <button
+                      onClick={(e) => {
+                        deleteTask(e, task.id, task.repeated);
+                      }}
+                    >
+                      x
+                    </button>
+                  </td>
                 </tr>
               );
             })}

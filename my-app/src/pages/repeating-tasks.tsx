@@ -45,13 +45,21 @@ const RepeatingTasks = () => {
     await getRecurringTasks();
   };
 
+  const deleteTask = async (e: any, taskID: number) => {
+    const { data, error } = await supabase
+      .from("repeated_tasks")
+      .delete()
+      .eq("id", taskID);
+    await getRecurringTasks();
+  };
+
   return (
     <div>
       <div>
         <p className="text-2xl py-5">Repeating Tasks</p>
       </div>
       <div>
-        <p className="text-2xl py-5">{familyName}</p>
+        <p className="text-2xl py-5">Your family name: {familyName}</p>
       </div>
       <div className="flex justify-center items-center">
         <table>
@@ -60,6 +68,7 @@ const RepeatingTasks = () => {
               <th className="border border-sky-400 bg-sky-300">Time</th>
               <th className="border border-sky-400 bg-sky-300">Name</th>
               <th className="border border-sky-400 bg-sky-300">Allocated to</th>
+              <th className="border border-sky-400 bg-sky-300">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -69,6 +78,15 @@ const RepeatingTasks = () => {
                   <td>{task.time}</td>
                   <td>{task.task}</td>
                   <td>{task.allocated_to}</td>
+                  <td className="bg-red-400">
+                    <button
+                      onClick={(e) => {
+                        deleteTask(e, task.id);
+                      }}
+                    >
+                      x
+                    </button>
+                  </td>
                 </tr>
               );
             })}
