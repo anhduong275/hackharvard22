@@ -60,7 +60,6 @@ const Allocator = () => {
     const filteredTasks = nonrepeated_tasks!.filter((task) =>
       filterTodaysTasks(filteredToday, task)
     );
-    console.log("nonrepeated", filteredTasks);
     setNonrepeatedTasks(filteredTasks);
   }, []);
 
@@ -83,7 +82,6 @@ const Allocator = () => {
         return 0;
       }
     });
-    console.log("sortedTasks", sortedTasks);
     const newsortedTasks = [...sortedTasks];
     setAllTodaysTasks(newsortedTasks);
   }, []);
@@ -166,7 +164,9 @@ const Allocator = () => {
       <div>
         <p className="text-2xl py-5">{familyName}</p>
       </div>
-      <button onClick={allocate}>Click to allocate</button>
+      <button className="bg-sky-400 my-4 p-2" onClick={allocate}>
+        Click to allocate
+      </button>
       <div className="flex justify-center items-center">
         <table>
           <thead>
@@ -192,7 +192,9 @@ const Allocator = () => {
           </tbody>
         </table>
       </div>
-      <button onClick={toggleModal}>Add new nonrepeated task</button>
+      <button className="bg-sky-400 my-4 p-2" onClick={toggleModal}>
+        Add new nonrepeated task
+      </button>
       <div
         className={`fixed mx-auto top-[30%] right-[40%] flex justify-center items-center ${
           addTaskModal ? "w-[300px] h-[200px] bg-sky-300" : ""

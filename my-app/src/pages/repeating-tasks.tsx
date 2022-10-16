@@ -75,7 +75,9 @@ const RepeatingTasks = () => {
           </tbody>
         </table>
       </div>
-      <button onClick={toggleModal}>Add new repeated task</button>
+      <button className="bg-sky-400 my-4 p-2" onClick={toggleModal}>
+        Add new repeated task
+      </button>
       <div
         className={`fixed mx-auto top-[30%] right-[40%] flex justify-center items-center ${
           addTaskModal ? "w-[300px] h-[200px] bg-sky-300" : ""
