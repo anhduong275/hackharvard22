@@ -2,11 +2,13 @@ import { render } from "@testing-library/react";
 import React, { useCallback, useEffect, useState } from "react";
 import supabase from "../components/supabase";
 import AddUser from "../components/addUser";
+import ChangeFamilyName from "../components/changeFamilyName";
 
 function Users() {
   const familyid = 1; // we do auth later
   const [addUserModal, setAddUserModal] = useState(false);
   const [allUsers, setAllUsers] = useState<any[] | null>([]);
+  const [familyName, setFamilyName] = useState("");
 
   const toggleModal = () => {
     setAddUserModal(!addUserModal);
@@ -17,6 +19,27 @@ function Users() {
       .from("users")
       .insert([{ username: user, familyid }]);
   };
+
+  const submitFamilyName = async (familyname: any) => {
+    if (!familyname) {
+      alert("Name cannot be empty");
+      return;
+    }
+    const { data, error } = await supabase
+      .from("families")
+      .update([{ familyname }])
+      .eq("id", familyid);
+    alert("Name set successful!");
+  };
+
+  const getFamilyName = useCallback(async () => {
+    let { data: familynames, error } = await supabase
+      .from("families")
+      .select("familyname")
+      .eq("id", familyid);
+    const familyname = familynames ? familynames[0].familyname : "";
+    setFamilyName(familyname as string);
+  }, []);
 
   const getUsers = async () => {
     const { data, error } = await supabase
@@ -30,6 +53,10 @@ function Users() {
     getUsers();
   });
 
+  useEffect(() => {
+    getFamilyName();
+  }, [getFamilyName]);
+
   const deleteUser = async (e: any, userId: any) => {
     const { data, error } = await supabase
       .from("users")
@@ -39,6 +66,14 @@ function Users() {
 
   return (
     <div>
+      <div>
+        <p className="text-2xl py-5">Family name</p>
+        <ChangeFamilyName
+          submitFamilyName={submitFamilyName}
+          setFamilyName={setFamilyName}
+          familyName={familyName}
+        ></ChangeFamilyName>
+      </div>
       <div>
         <p className="text-2xl py-5">Manage Users</p>
       </div>
