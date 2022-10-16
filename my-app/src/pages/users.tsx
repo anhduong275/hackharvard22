@@ -46,8 +46,8 @@ function Users() {
         <table>
           <thead>
             <tr>
-              <th className="border-sky-400 bg-sky-300">Users</th>
-              <th className="border-sky-400 bg-sky-300">Delete</th>
+              <th className="border-sky-400 bg-sky-300 px-5">Users</th>
+              <th className="border-sky-400 bg-sky-300 px-5">Delete</th>
             </tr>
           </thead>
           <tbody>
